@@ -1,6 +1,5 @@
 from tkinter import *
 
-
 class Window(Frame):
     def __init__(self, master=None):
 

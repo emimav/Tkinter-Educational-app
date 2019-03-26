@@ -4,7 +4,7 @@ import os
 class Dialog(Toplevel):
 
     def __init__(self, parent, title = None):
-
+        self.row = 0
         Toplevel.__init__(self, parent)
         self.transient(parent)
 
@@ -17,7 +17,6 @@ class Dialog(Toplevel):
 
         body = Frame(self)
         self.initial_focus = self.body(body)
-        body.pack(padx=5, pady=5)
 
         self.buttonbox()
 
@@ -49,18 +48,17 @@ class Dialog(Toplevel):
         # standard buttons
 
         box = Frame(self)
+        box.grid(row=self.row +1, column=0)
 
         w = Button(box, text="OK", width=10, command=self.ok, default=ACTIVE)
-        w.pack(side=LEFT, padx=5, pady=5)
+        w.grid(row=0, column=0, padx=5, pady=5)
         w = Button(box, text="Cancel", width=10, command=self.cancel)
-        w.pack(side=LEFT, padx=5, pady=5)
+        w.grid(row=0, column=1, padx=5, pady=5)
 
         self.bind("<Return>", self.ok)
         self.bind("<Escape>", self.cancel)
 
-        box.pack()
 
-    #
     # standard button semantics
 
     def ok(self, event=None):
